@@ -777,6 +777,7 @@ def grok_md() -> str:
     dispatch = "\n".join(
         f"- `{s['command']}`: {s['title']} — {s['writes']}" for s in SKILLS
     )
+    doctrine_body = "\n".join(DOCTRINE.strip().splitlines()[1:]).lstrip()
     return f"""---
 name: pms
 description: >-
@@ -803,7 +804,7 @@ or the short alias `/<command>`.
 {index}
 
 ## Doctrine
-{DOCTRINE}
+{doctrine_body}
 
 ## Dispatch
 When the user fires a command (with or without the `pms-` prefix), run that
@@ -854,13 +855,14 @@ and **Codex**. Each instrument is its own user-invocable skill.
 
 ## Install on Grok (grok.com / iOS / Android)
 
-Grok web skills are installed from **Customize → Skills** (or by asking Grok
-to save a skill). Upload **one file**:
+App Builder cannot write the grok.com Skills store. Install in 20 seconds:
 
-[`GROK.md`](GROK.md)
-
-Name it **pms**. After that, type `/pms`, `/pms-map`, `/pms-audit`, `/pms-test`
-in a new conversation.
+1. Download [`GROK.md`](GROK.md)
+2. Open a **normal** grok.com chat (not a Build session)
+3. Either:
+   - **Customize → Skills → Import / Create** and upload `GROK.md`, name it **pms**
+   - or attach `GROK.md` and say: `Save this as a skill called pms. Make it available as /pms.`
+4. Start a **new** conversation. Type `/pms`, `/pms-map`, `/pms-audit`, `/pms-test`.
 
 Short aliases (`/map`, `/here`, `/audit`, …) work once the pack is loaded.
 
